@@ -1,17 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTodoRequest, modifyTodoRequest, DeleteTodoRequest } from '../redux/action'
+import { modifyTodoRequest, DeleteTodoRequest } from '../redux/action'
 const Showtodo = () => {
 
     const dispatch = useDispatch()
     const selector = useSelector(state => state)
-
-    useEffect(() => {
-        dispatch(getTodoRequest())
-
-
-    }, [dispatch])
-
 
     function deletetodo(id) {
         dispatch(DeleteTodoRequest(id))
@@ -20,8 +13,8 @@ const Showtodo = () => {
     function changetodo(id) {
         dispatch(modifyTodoRequest(id))
     }
-    return (
 
+    return (
         <table>
             <thead>
                 <tr>
@@ -34,7 +27,7 @@ const Showtodo = () => {
             </thead>
             <tbody>
 
-                {selector.map((ele, index) => {
+                {selector.data.map((ele, index) => {
                     return <tr key={index}>
                         <td>{index}</td>
                         <td>{ele.todo}</td>
