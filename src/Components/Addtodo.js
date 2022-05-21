@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import * as callapi from './CallApi'
 
-const Addtodo = ({ todo, settodo }) => {
+import { addtodoPostRequest } from '../redux/action'
+import { useDispatch } from 'react-redux'
+const Addtodo = () => {
+    const dispatch = useDispatch()
     const [valueinput, setValueinput] = useState('')
 
     function handleChange(e) {
@@ -9,20 +11,11 @@ const Addtodo = ({ todo, settodo }) => {
     }
     function handleClick() {
         if (valueinput.trim()) {
-
-
-            callapi.postData({ id: Math.random(), todo: valueinput, status: 'false', "price": 1222228 })
-                //vi tra ra 1 promise nen ta .then duoc  -- sau khi post data xong thi ta lai goi len server de getdata
-                .then(data => {
-                    return callapi.getData()
-                    // settodo([...todo, data]) -- cach nay cung duoc
-                })
-                .then(data => settodo(data))
-
-
-
-
-
+            dispatch(addtodoPostRequest({
+                todo: valueinput,
+                status: 'true',
+                price: 6666
+            }))
         }
     }
     return (

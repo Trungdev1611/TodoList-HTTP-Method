@@ -1,12 +1,12 @@
 import Showtodo from "./Components/Showtodo";
 import Addtodo from "./Components/Addtodo";
-import React, { useState } from 'react'
+import React from 'react'
 function App() {
-  const [todo, setTodo] = useState([])
+
   return (
     <div className="App">
-      <Addtodo settodo={setTodo} todo={todo} />
-      <Showtodo settodo={setTodo} todo={todo} />
+      <Addtodo />
+      <Showtodo />
     </div>
   );
 }

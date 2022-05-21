@@ -1,32 +1,24 @@
 import React, { useEffect } from 'react'
-import * as callapi from './CallApi'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTodoRequest, modifyTodoRequest, DeleteTodoRequest } from '../redux/action'
+const Showtodo = () => {
 
-const Showtodo = ({ todo, settodo }) => {
-    console.log(todo)
-
+    const dispatch = useDispatch()
+    const selector = useSelector(state => state)
 
     useEffect(() => {
-        callapi.getData().then(data => settodo(data))
+        dispatch(getTodoRequest())
 
-    }, [])
-    console.log(todo)
+
+    }, [dispatch])
+
 
     function deletetodo(id) {
-        callapi.DeleteData(id)
-            //vi tra ra 1 promise nen ta .then duoc --sau khi delete tren sever xong thi ta lai goi len server de lay data
-            .then(data => callapi.getData()
-                //     {
-                //     let indexfind = todo.findIndex((ele) => ele.id === data.id)
-                //     todo.splice(indexfind, 1)
-                //     settodo([...todo])
-                // }
-            ).then(data => settodo(data))
+        dispatch(DeleteTodoRequest(id))
     }
 
     function changetodo(id) {
-        callapi.ChangeTodo(id)
-            //vi tra ra 1 promise nen ta .then duoc---sau khi PUT tren sever xong thi ta lai goi len server de lay data
-            .then(data => callapi.getData()).then(data => settodo(data))
+        dispatch(modifyTodoRequest(id))
     }
     return (
 
@@ -42,7 +34,7 @@ const Showtodo = ({ todo, settodo }) => {
             </thead>
             <tbody>
 
-                {todo.map((ele, index) => {
+                {selector.map((ele, index) => {
                     return <tr key={index}>
                         <td>{index}</td>
                         <td>{ele.todo}</td>
