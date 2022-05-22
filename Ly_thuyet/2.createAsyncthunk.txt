@@ -1,0 +1,8 @@
+CreateAsyncthunk trong redux-toolkit nhan vao 2 tham so
+ - tham so 1 la 1 string
+ - tham so 2 la 1 function de goi len api va tra ra mot pormise. du lieu promise duoc tra ra se duoc tu dong dispatch 
+
+-Ham createAsyncthunk se tao ra 3 trang thai: pending, fullfilled, reject
+Trong trang thai pending ta co the set hieu ung loading
+Trong trang thai fullfilled ta co duoc data
+Trong trang thai reject ta se hien thi loi

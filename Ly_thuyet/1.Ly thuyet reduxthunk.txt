@@ -1,0 +1,7 @@
+redux thunk được dùng để xử lý code bất đồng bộ trong redux. 
+Thay vì một action gửi lên reducer là  1 plane object như thông thường thì thunk được sử dụng khi một action gửi lên reudcer là một function thực hiện công việc bất đồng bộ.
+ Thunk -middleware- sẽ đứng giữa đường đi của dispatch và reducer. Những action là function sẽ được đi qua thunk middleware để xử lý và dispatch một lần nữa về reducer
+
+Một thunk action creator sẽ return về một thunk action là một funtion mà function đó có thể sử dụng được các hàm dispatch để tiếp tục gửi dispatch và một hàm getState
+
+2. CreateAsynthunk

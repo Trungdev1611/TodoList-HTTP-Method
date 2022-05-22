@@ -16,6 +16,9 @@ function App() {
   if (selector.loading) {
     return <h1>Loading...</h1>
   }
+  if (selector.error) {
+    return <h1>{selector.error}</h1>
+  }
 
   return (
 
