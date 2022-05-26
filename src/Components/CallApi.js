@@ -4,7 +4,8 @@ let url = 'https://6282ebc592a6a5e4621b5ab9.mockapi.io/todotest/listtodo'
 export async function getData() {
     let res = await axios.get(url)
 
-    let data = res.data
+    let data = await res.data
+    console.log('data', data)
     return data
 }
 

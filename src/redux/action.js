@@ -1,13 +1,14 @@
 import * as callapi from './../Components/CallApi'
 import { loading, addTodo, getTodo, deleteTodo, modifyTodo } from './reducer'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-export const getTodoRequest = () => {
-    return (dispatch) => {
-        dispatch(loading()) //
-        callapi.getData().then(data => dispatch(getTodo(data))) //sau khi get du lieu tu sever thi dispatch them mot action len store decap nhat du lieu
-            .catch(err => dispatch(err()))
-    }
-}
+// export const getTodoRequest = () => {
+//     return (dispatch) => {
+//         dispatch(loading()) //
+//         callapi.getData().then(data => dispatch(getTodo(data))) //sau khi get du lieu tu sever thi dispatch them mot action len store decap nhat du lieu
+//             .catch(err => dispatch(err()))
+//     }
+// }
 
 export const addtodoPostRequest = (data1) => {
     return (dispatch) => {
@@ -32,3 +33,8 @@ export const DeleteTodoRequest = (id) => {
             .then(data => dispatch(deleteTodo(data)))
     }
 }
+
+
+
+
+export const getTodoRequest = createAsyncThunk('todoAsyncthunk', () => callapi.getData())
